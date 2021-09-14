@@ -1,28 +1,48 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div id="app">
+        vue-demo
+        <div class="list">
+            <div class="item" v-for="(item, index) of list" :key="index">{{ item.name }}: {{ item.age }}岁</div>
+        </div>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios';
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+    name: 'App',
+    components: {},
+    data() {
+        return {
+            list: [],
+        };
+    },
+    created() {
+        console.log('created');
+        this.init();
+    },
+    methods: {
+        init() {
+            axios
+                .get('https://www.tencent.com/user?id=12345')
+                .then(response => {
+                    console.log('response', response.data);
+                    this.list = response.data.list;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+    },
+};
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+    text-align: center;
+}
+.list {
+    padding-top: 20px;
 }
 </style>
