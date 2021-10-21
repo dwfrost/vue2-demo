@@ -7,8 +7,10 @@
         <Form v-if="false" />
         <Select v-if="false" />
         <Cascader v-if="false" />
-        <Table v-if="false" />
-        <Table2 v-if="true" />
+        <Table2 v-if="false" />
+        <!-- <Table v-if="true" /> -->
+        <TableChild2 v-if="false" />
+        <TableChild />
     </div>
 </template>
 
@@ -17,11 +19,12 @@ import axios from 'axios'
 import Form from '@/components/Form.vue'
 import Select from '@/components/Select.vue'
 import Cascader from '@/components/Cascader.vue'
-import Table from '@/components/Table.vue'
+import TableChild2 from '@/components/TableChild2.vue'
+import TableChild from '@/components/TableChild.vue'
 import Table2 from '@/components/Table2.vue'
 export default {
     name: 'App',
-    components: { Form, Select, Cascader, Table, Table2 },
+    components: { Form, Select, Cascader, TableChild2, Table2, TableChild },
     data() {
         return {
             list: [],
