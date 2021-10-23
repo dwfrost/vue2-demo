@@ -69,7 +69,7 @@ export function checkParent(
   props = { ...defaultProps, ...props };
 
   let result = false;
-  const dfs = (treeData, currentId, currentPId) => {
+  const dfs = (currentId, currentPId) => {
     const { child, id, pid, checked } = props;
     // 1.判断当前层级除了该id，其他兄弟都checked
     // 2.切换父级checkbox
@@ -88,15 +88,15 @@ export function checkParent(
       parent[checked] = isChecked;
       //   console.log("parent1", parent, checked, isChecked);
 
-      dfs(treeData, parent[id], parent[pid]);
+      dfs(parent[id], parent[pid]);
     }
   };
 
-  dfs(treeData, currentId, currentPId);
+  dfs(currentId, currentPId);
   return result;
 }
 
-function findNode(treeData, nodeId, props) {
+export function findNode(treeData, nodeId, props) {
   //   console.log("treeData", treeData, nodeId, props);
   const { child = "children", id = "id" } = props;
   const dfs = (treeData, nodeId) => {
