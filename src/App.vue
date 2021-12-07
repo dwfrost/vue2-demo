@@ -15,7 +15,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { v4 as uuidv4 } from 'uuid';
+
 import Form from '@/components/Form.vue'
 import Select from '@/components/Select.vue'
 import Cascader from '@/components/Cascader.vue'
@@ -32,20 +33,15 @@ export default {
     },
     created() {
         console.log('created')
-        // this.init()
+        this.init()
     },
     methods: {
         init() {
-            axios
-                .get('https://www.tencent.com/user?id=12345')
-                .then(response => {
-                    console.log('response', response.data)
-                    this.list = response.data.list
-                })
-                .catch(error => {
-                    console.log(error)
-                })
+           this.generateUid()
         },
+        generateUid(){
+            console.log(uuidv4())
+        }
     },
 }
 </script>
