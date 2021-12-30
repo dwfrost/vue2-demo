@@ -1,82 +1,49 @@
 <template>
-    <div id="app">
-        vue-demo
-  <el-tabs v-model="activeName">
-    <el-tab-pane label="Form" name="1">
-        <Form  />
-        
-    </el-tab-pane>
-    <el-tab-pane label="Select" name="2">
-        <Select  />
-        
-    </el-tab-pane>
-    <el-tab-pane label="Cascader" name="3">
-        <Cascader  />
-        
-    </el-tab-pane>
-   
-    <el-tab-pane label="Table2" name="5">
-        <Table2  />
-    </el-tab-pane>
-    <el-tab-pane label="TableChild" name="6">
-                <TableChild  />
-    </el-tab-pane>
-    <el-tab-pane label="TableChild2" name="7">
-                <TableChild2  />
-    </el-tab-pane>
-    <el-tab-pane label="AddDel" name="8">
-                <AddDel />
-        
-    </el-tab-pane>
-  </el-tabs>
-       
+    <div class="App-wrap">
+        <transition :name="transitionName" mode="out-in">
+            <router-view />
+        </transition>
     </div>
 </template>
-
 <script>
-import { v4 as uuidv4 } from 'uuid'
-
-import Form from '@/components/Form.vue'
-import Select from '@/components/Select.vue'
-import Cascader from '@/components/Cascader.vue'
-import TableChild2 from '@/components/TableChild2.vue'
-import TableChild from '@/components/TableChild.vue'
-import Table2 from '@/components/Table2.vue'
-import AddDel from '@/components/AddDel.vue'
-
-import Obj from '@/utils/module'
-
 export default {
     name: 'App',
-    components: { Form, Select, Cascader, TableChild2, Table2, TableChild, AddDel },
+    components: {},
     data() {
         return {
-            activeName:'1'
+            transitionName: 'slide-right'
         }
     },
-    created() {
-        console.log('created')
-        const obj = new Obj()
-        obj.a = 10
-        console.log(obj)
-        this.init()
-    },
-    methods: {
-        init() {
-            this.generateUid()
-        },
-        generateUid() {
-            console.log(uuidv4())
+    watch: {
+        $route(to, from) {
+            console.log(to, from)
+            // @todo
+            // 维护本地路由栈
+            // const toDepth = to.path.split('/').length
+            // const fromDepth = from.path.split('/').length
+            // this.transitionName = toDepth < fromDepth ? 'slide-right' : toDepth > fromDepth ? 'slide-left' : ''
         }
-    }
+    },
+
+    methods: {}
 }
 </script>
-<style>
-@import './assets/css/base.css';
-#app {
-    text-align: center;
-}
-.list {
-    padding-top: 20px;
+<style lang="scss" scoped>
+.App-wrap {
+    .slide-left-enter {
+        transform: translate3d(100%, 0, 0);
+    }
+    .slide-left-enter-active,
+    .slide-left-leave-active {
+        transition: transform 0.4s ease;
+    }
+
+    .slide-right-leave-to {
+        transform: translate3d(100%, 0, 0);
+    }
+    .slide-right-enter-active,
+    .slide-right-leave-active {
+        transition: transform 0.4s ease;
+    }
 }
 </style>

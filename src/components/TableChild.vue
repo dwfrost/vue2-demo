@@ -67,9 +67,9 @@ export default {
     props: {
         channelType: {
             type: String,
-            default: 'awen',
+            default: 'awen'
             // default: 'mt',
-        },
+        }
     },
     data() {
         return {
@@ -91,7 +91,7 @@ export default {
                                 sku_id: 'string',
                                 spec: '500ML',
                                 sub_biz_order_id: 'string',
-                                surplus_refund_amount: 60.0,
+                                surplus_refund_amount: 60.0
                             },
                             {
                                 app_food_code: 'string',
@@ -105,8 +105,8 @@ export default {
                                 sku_id: 'string',
                                 spec: '200ML',
                                 sub_biz_order_id: 'string',
-                                surplus_refund_amount: 40.0,
-                            },
+                                surplus_refund_amount: 40.0
+                            }
                         ],
                         food_name: '组合1',
                         food_price: 0,
@@ -117,7 +117,7 @@ export default {
                         sku_id: 'string',
                         spec: '保健组合',
                         sub_biz_order_id: 'string',
-                        surplus_refund_amount: 100.0,
+                        surplus_refund_amount: 100.0
                     },
                     {
                         app_food_code: 'string',
@@ -135,7 +135,7 @@ export default {
                                 sku_id: 'string',
                                 spec: '500ML',
                                 sub_biz_order_id: 'string',
-                                surplus_refund_amount: 100.0,
+                                surplus_refund_amount: 100.0
                             },
                             {
                                 app_food_code: 'string',
@@ -149,8 +149,8 @@ export default {
                                 sku_id: 'string',
                                 spec: '500ML',
                                 sub_biz_order_id: 'string',
-                                surplus_refund_amount: 200.0,
-                            },
+                                surplus_refund_amount: 200.0
+                            }
                         ],
                         food_name: '组合2',
                         food_price: 0,
@@ -161,12 +161,12 @@ export default {
                         sku_id: 'string',
                         spec: '术后组合',
                         sub_biz_order_id: 'string',
-                        surplus_refund_amount: 300.0,
-                    },
+                        surplus_refund_amount: 300.0
+                    }
                 ],
                 { child: 'child_products' }
             ),
-            allChecked: false,
+            allChecked: false
         }
     },
     computed: {
@@ -191,7 +191,7 @@ export default {
                 let amount = row.count === row.sale_count ? row.surplus_refund_amount : Math.round(row.refund_price * row.count * 100) / 100
                 return `￥${amount}`
             }
-        },
+        }
     },
     created() {
         this.initCount()
@@ -210,7 +210,7 @@ export default {
         },
         // 子选框事件
         selectCheckbox(row) {
-            console.log('selectCheckbox', row)
+            // console.log('selectCheckbox', row)
             // 勾选与否影响退货数量
             if (row.checked) {
                 row.count = row.count > 0 ? row.count : 1
@@ -237,7 +237,7 @@ export default {
                 const shoudCheckAll = checkParent(this.tableData, row.checked, row._id, row._pid, {
                     child: 'child_products',
                     id: '_id',
-                    pid: '_pid',
+                    pid: '_pid'
                 })
                 // console.log('shoudCheckAll', shoudCheckAll)
                 if (shoudCheckAll) {
@@ -249,7 +249,7 @@ export default {
             checkAll(this.tableData, checked, { child: 'child_products' })
         },
         onCountInput(row) {
-            console.log('onCountInput', row)
+            // console.log('onCountInput', row)
 
             row.checked = row.count > 0
             this.selectCheckbox(row)
@@ -263,20 +263,20 @@ export default {
             }
         },
         onCountChange(row) {
-            console.log('onCountChange', row)
+            // console.log('onCountChange', row)
 
             // 阿闻商品，数量修改后，取消勾选父级checkbox
             if (this.channelType === 'awen') {
                 const parent = findNode(this.tableData, row._pid, { child: 'child_products', id: '_id' })
-                console.log('parentparent', parent)
+                // console.log('parentparent', parent)
                 parent && (parent.checked = false)
-                console.log('parentparent1', parent)
+                // console.log('parentparent1', parent)
             }
         },
         confirm() {
-            console.log(this.tableData)
-        },
-    },
+            // console.log(this.tableData)
+        }
+    }
 }
 </script>
 

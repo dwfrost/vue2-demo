@@ -1,12 +1,13 @@
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 // const CompressionPlugin = require('compression-webpack-plugin')
 module.exports = {
-    publicPath: './',
+    publicPath: '/vue',
     productionSourceMap: false,
     devServer: {
         // https://v4.webpack.js.org/configuration/dev-server/#devserverdisablehostcheck
         disableHostCheck: true
     },
+    runtimeCompiler: true, // 可以支持template进行模板渲染
     configureWebpack: config => {
         // if (process.env.NODE_ENV === 'production') {
         //     config.plugins.push(new BundleAnalyzerPlugin())
