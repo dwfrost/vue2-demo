@@ -11,17 +11,17 @@ export default {
     components: {},
     data() {
         return {
-            transitionName: 'slide-right'
+            transitionName: 'slide-right',
+            visitedRoutes: [],
+            currentRoute: ''
         }
     },
     watch: {
         $route(to, from) {
             console.log(to, from)
-            // @todo
-            // 维护本地路由栈
-            // const toDepth = to.path.split('/').length
-            // const fromDepth = from.path.split('/').length
-            // this.transitionName = toDepth < fromDepth ? 'slide-right' : toDepth > fromDepth ? 'slide-left' : ''
+            const toDepth = to.path.split('/').length
+            const fromDepth = from.path.split('/').length
+            this.transitionName = toDepth < fromDepth ? 'slide-right' : toDepth > fromDepth ? 'slide-left' : ''
         }
     },
 

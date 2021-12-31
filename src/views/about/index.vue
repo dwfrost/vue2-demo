@@ -1,6 +1,7 @@
 <template>
     <div class="index-wrap">
         <div>about page</div>
+        <div>页面路径/about</div>
         <el-button type="primary" @click="$router.go(-1)">back</el-button>
         <!-- <el-button type="primary" @click="logRoute">logRoute</el-button> -->
     </div>

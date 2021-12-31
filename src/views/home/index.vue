@@ -1,6 +1,7 @@
 <template>
     <div class="app">
         <div>home page</div>
+        <div>页面路径/home</div>
         <div>
             <el-button @click="jump2About">to about</el-button>
             <el-button @click="jump2Trans">to trans</el-button>
@@ -76,7 +77,7 @@ export default {
             // })
         },
         jump2Trans() {
-            this.$router.push({ path: '/trans' })
+            this.$router.push({ path: '/trans/index' })
         }
     }
 }

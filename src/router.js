@@ -33,7 +33,7 @@ export default new Router({
             component: about
         },
         {
-            path: '/trans',
+            path: '/trans/index',
             name: 'trans',
             meta: {
                 title: '中间页'

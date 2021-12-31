@@ -1,9 +1,10 @@
 <template>
     <div class="index-wrap">
-        <div>transition 中间页</div>
+        <div>transition页</div>
+        <div>页面路径/trans/index</div>
         <div>
-            <el-button type="primary" @click="$router.go(-1)">back home</el-button>
-            <el-button type="primary" @click="jump">to about</el-button>
+            <el-button type="primary" @click="$router.go(-1)">back</el-button>
+            <!-- <el-button type="primary" @click="jump">to about</el-button> -->
         </div>
     </div>
 </template>
